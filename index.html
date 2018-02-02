@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="content-language" content="en" />
-<meta http-equiv="Content-Type" content="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link href="main.css" media="all" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="content-language" content="en" />
+    <meta http-equiv="Content-Type" content="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link href="main.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <script src="jquery-2.1.1.js"></script>
 <script>
-$.getJSON('data.json', function (data) {
-    console.log(data);
-});
+    // only prints if data.json is empty
+    document.body.innerHTML = "<p> No data found in data.json </p>";
+    $.getJSON('data.json', function(data) {
+
+        var dates = Object.keys(data);
+        var dataTable ="<table class='tg'><tr><th class='tg'>Date</th><th class='tg'>BBC One</th><th class='tg'>BBC Two</th><th class='tg'>BBC Three</th><th class='tg'>BBC Four</th><th class='tg'>BBC News 24</th><th class='tg'>CBBC</th><th class='tg'>Cbeebies</th></tr>";
+        // create the table headers
+
+        for (var i = 0; i < dates.length; i++) {
+            var arr = dates[i].split("-");
+            var year = arr[0];
+            var month = numToMonth(arr[1]);
+            var channels = Object.keys(data[dates[i]]);
+
+            dataTable+="<tr><td>"+ month + " " + year + "</td>";
+
+            for (var j = 0; j < channels.length; j++) dataTable+= "<td>" + data[dates[i]][getChannelName(j)] + "</td>";
+
+            dataTable+="</tr>";
+        }
+        dataTable+="</table>";
+        document.body.innerHTML = dataTable;
+    });
+
+    function numToMonth(n) {
+        var months = ['January', 'February', 'March', 'April', 'May',
+            'June', 'July', 'August', 'September',
+            'October', 'November', 'December'];
+        return months[n - 1];
+    }
+
+    function getChannelName(n) { // to keep a consistent order in table
+        var channels = {1:"bbcone", 2:"bbctwo", 3:"bbcthree", 4:"bbcfour", 5:"bbcnews24", 6:"cbbc", 7:"cbeebies"};
+        return channels[n + 1];
+    }
 </script>
 </body>
 </html>
