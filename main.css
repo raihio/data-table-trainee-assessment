@@ -1,3 +1,9 @@
+.ctr {
+    margin: auto;
+    width: 600px;
+    height: 500px;
+    padding: 180px;
+}
 
 .tg {
     border-collapse: collapse;
@@ -14,7 +20,7 @@
 .tg th {
     font-family: Arial, sans-serif;
     font-size: 14px;
-    font-weight: normal;
+    font-weight: bold;
     padding: 10px 5px;
     border: 1px solid;
     overflow: hidden;

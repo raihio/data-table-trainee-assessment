@@ -12,11 +12,11 @@
 <script src="jquery-2.1.1.js"></script>
 <script>
     // only prints if data.json is empty
-    document.body.innerHTML = "<p> No data found in data.json </p>";
+    document.body.innerHTML = "<div class='ctr'></div><p> No data found in data.json </p></div>";
     $.getJSON('data.json', function(data) {
 
         var dates = Object.keys(data);
-        var dataTable ="<table class='tg'><tr><th class='tg'>Date</th><th class='tg'>BBC One</th><th class='tg'>BBC Two</th><th class='tg'>BBC Three</th><th class='tg'>BBC Four</th><th class='tg'>BBC News 24</th><th class='tg'>CBBC</th><th class='tg'>Cbeebies</th></tr>";
+        var dataTable ="<div class='ctr'><table class='tg'><tr><th class='tg'>Date</th><th class='tg'>BBC One</th><th class='tg'>BBC Two</th><th class='tg'>BBC Three</th><th class='tg'>BBC Four</th><th class='tg'>BBC News 24</th><th class='tg'>CBBC</th><th class='tg'>Cbeebies</th></tr>";
         // create the table headers
 
         for (var i = 0; i < dates.length; i++) {
@@ -31,18 +31,20 @@
 
             dataTable+="</tr>";
         }
-        dataTable+="</table>";
+        dataTable+="</table></div>";
         document.body.innerHTML = dataTable;
     });
 
     function numToMonth(n) {
+        // Function to convert month numbers to month name
         var months = ['January', 'February', 'March', 'April', 'May',
             'June', 'July', 'August', 'September',
             'October', 'November', 'December'];
         return months[n - 1];
     }
 
-    function getChannelName(n) { // to keep a consistent order in table
+    function getChannelName(n) {
+        // Function to convert number to channel name (maintain modularity)
         var channels = {1:"bbcone", 2:"bbctwo", 3:"bbcthree", 4:"bbcfour", 5:"bbcnews24", 6:"cbbc", 7:"cbeebies"};
         return channels[n + 1];
     }
