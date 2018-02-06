@@ -34,7 +34,6 @@
         dataTable+="</tbody></table></div>";
         var searchBar = "<input id='searchBox' type='text' onkeyup='findText()' placeholder='Search for a month/year...'/>";
         document.body.innerHTML = searchBar + dataTable;
-        var table = document.getElementById("maintable");
     });
     
     function findText() {
@@ -73,10 +72,12 @@
                 if (dateSort) {
                     var valA = getTimeValue(a, index);
                     var valB = getTimeValue(b, index);
+                    // gets the UNIX time stamp so we can sort by date
                 }
                 else {
                     var valA = getCellValue(a, index);
                     var valB = getCellValue(b, index);
+                    // gets the value of the cell
                 }
                 return valA - valB;
             }
