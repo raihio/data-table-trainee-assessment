@@ -16,7 +16,7 @@
     $.getJSON('data.json', function(data) {
 
         var dates = Object.keys(data);
-        var dataTable ="<div class='ctr' id='dataTable'><table class='tg' id='maintable'><tr><th class='tg' onclick='sortCol()'>Date</th><th class='tg' onclick='sortCol()' id='bbcone'>BBC One</th><th class='tg' onclick='sortCol()'>BBC Two</th><th class='tg' onclick='sortCol()'>BBC Three</th><th class='tg' onclick='sortCol()'>BBC Four</th><th class='tg' onclick='sortCol()'>BBC News 24</th><th class='tg' onclick='sortCol()'>CBBC</th><th class='tg' onclick='sortCol()'>Cbeebies</th></tr>";
+        var dataTable ="<div class='ctr' id='dataTable'><table class='tg' id='maintable'><tr><th class='tg' onclick='sortCol(true)'>Date</th><th class='tg' onclick='sortCol()' id='bbcone'>BBC One</th><th class='tg' onclick='sortCol()'>BBC Two</th><th class='tg' onclick='sortCol()'>BBC Three</th><th class='tg' onclick='sortCol()'>BBC Four</th><th class='tg' onclick='sortCol()'>BBC News 24</th><th class='tg' onclick='sortCol()'>CBBC</th><th class='tg' onclick='sortCol()'>Cbeebies</th></tr>";
         // create the table headers
         dataTable+="<tbody id='dataTab'>";
         for (var i = 0; i < dates.length; i++) {
@@ -24,8 +24,8 @@
             var year = arr[0];
             var month = numToMonth(arr[1]);
             var channels = Object.keys(data[dates[i]]);
-
-            dataTable+="<tr><td width='120' >"+ month + " " + year + "</td>";
+            var unixTimestamp = new Date(month + year).getTime();
+            dataTable+="<tr><td width='120' value=" + unixTimestamp + " >"+ month + " " + year + "</td>";
 
             for (var j = 0; j < channels.length; j++) dataTable+= "<td width='100' align='center'>" + data[dates[i]][getChannelName(j)] + "</td>";
 
@@ -33,8 +33,8 @@
         }
         dataTable+="</tbody></table></div>";
         var searchBar = "<input id='searchBox' type='text' onkeyup='findText()' placeholder='Search for a month/year...'/>";
-
         document.body.innerHTML = searchBar + dataTable;
+        var table = document.getElementById("maintable");
     });
     
     function findText() {
@@ -58,25 +58,36 @@
         }
     }
 
-    function sortCol() {
+    function sortCol(dateSort) {
         // when you click a table header, this function is called to sort it
         $('th').click(function(){
             var table = $(this).parents('table').eq(0);
             var rows = table.find('tr:gt(0)').toArray().sort(comparator($(this).index()));
             this.asc = !this.asc;
-            if (!this.asc) {
-                rows = rows.reverse();
-            }
+            if (!this.asc) rows = rows.reverse();
             for (var i = 0; i < rows.length; i++){table.append(rows[i])}
         });
 
         function comparator(index) {
             return function(a, b) {
-                var valA = getCellValue(a, index), valB = getCellValue(b, index);
-                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+                if (dateSort) {
+                    var valA = getTimeValue(a, index);
+                    var valB = getTimeValue(b, index);
+                }
+                else {
+                    var valA = getCellValue(a, index);
+                    var valB = getCellValue(b, index);
+                }
+                return valA - valB;
             }
         }
-        function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+        function getCellValue(row, index){
+            return $(row).children('td').eq(index).text()
+        }
+
+        function getTimeValue(row, index) {
+            return $(row).children('td').eq(index).attr("value");
+        }
     }
 
     function numToMonth(n) {
