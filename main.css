@@ -1,8 +1,9 @@
-.ctr {
+/**.ctr {
     margin: auto;
-    width: 600px;
+    width: 700px;
     height: 500px;
     padding: 180px;
+    table-layout: fixed;
 }
 
 .tg {
@@ -27,3 +28,4 @@
     word-break: normal;
     vertical-align: top;
 }
+**/

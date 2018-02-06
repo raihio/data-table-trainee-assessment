@@ -12,11 +12,11 @@
 <script src="jquery-2.1.1.js"></script>
 <script>
     // only prints if data.json is empty
-    document.body.innerHTML = "<div class='ctr'></div><p> No data found in data.json </p></div>";
+    document.body.innerHTML = "<div></div><p> No data found in data.json </p></div>";
     $.getJSON('data.json', function(data) {
 
         var dates = Object.keys(data);
-        var dataTable ="<div class='ctr'><table class='tg'><tr><th class='tg'>Date</th><th class='tg'>BBC One</th><th class='tg'>BBC Two</th><th class='tg'>BBC Three</th><th class='tg'>BBC Four</th><th class='tg'>BBC News 24</th><th class='tg'>CBBC</th><th class='tg'>Cbeebies</th></tr>";
+        var dataTable ="<div class='ctr' id='dataTable'><table class='tg'><tr><th class='tg'>Date</th><th class='tg'>BBC One</th><th class='tg'>BBC Two</th><th class='tg'>BBC Three</th><th class='tg'>BBC Four</th><th class='tg'>BBC News 24</th><th class='tg'>CBBC</th><th class='tg'>Cbeebies</th></tr>";
         // create the table headers
 
         for (var i = 0; i < dates.length; i++) {
@@ -25,15 +25,37 @@
             var month = numToMonth(arr[1]);
             var channels = Object.keys(data[dates[i]]);
 
-            dataTable+="<tr><td>"+ month + " " + year + "</td>";
+            dataTable+="<tr><td width='120' >"+ month + " " + year + "</td>";
 
-            for (var j = 0; j < channels.length; j++) dataTable+= "<td>" + data[dates[i]][getChannelName(j)] + "</td>";
+            for (var j = 0; j < channels.length; j++) dataTable+= "<td width='100' align='center'>" + data[dates[i]][getChannelName(j)] + "</td>";
 
             dataTable+="</tr>";
         }
         dataTable+="</table></div>";
-        document.body.innerHTML = dataTable;
+        var searchBar = "<input id='searchBox' type='text' onkeyup='findText()' placeholder='Search for a month/year...'/>";
+
+        document.body.innerHTML = searchBar + dataTable;
     });
+    
+    function findText() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchBox");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
+
+        for ( i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                }
+                else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 
     function numToMonth(n) {
         // Function to convert month numbers to month name
