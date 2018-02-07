@@ -1,15 +1,21 @@
-/**.ctr {
+
+.ctr {
     margin: auto;
-    width: 700px;
-    height: 500px;
-    padding: 180px;
-    table-layout: fixed;
+    width: max-content;
+    padding: 100px
+}
+
+#searchBox {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .tg {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+
 .tg td {
     font-family: Arial, sans-serif;
     font-size: 14px;
@@ -22,10 +28,25 @@
     font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: bold;
-    padding: 10px 5px;
+    padding: 5px;
     border: 1px solid;
     overflow: hidden;
     word-break: normal;
-    vertical-align: top;
 }
-**/
+
+th:hover{
+    background-color: mintcream;
+}
+
+th {
+    width: 105px;
+    height: 20px;
+    cursor: pointer;
+}
+
+th .dateCell {
+    width: 115px;
+    height: 27px;
+}
+
+

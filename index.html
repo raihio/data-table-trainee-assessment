@@ -12,11 +12,12 @@
 <script src="jquery-2.1.1.js"></script>
 <script>
     // only prints if data.json is empty
-    document.body.innerHTML = "<div></div><p> No data found in data.json </p></div>";
+    document.body.innerHTML = "<div><p> No data found in data.json </p></div>";
     $.getJSON('data.json', function(data) {
 
         var dates = Object.keys(data);
-        var dataTable ="<div class='ctr' id='dataTable'><table class='tg' id='maintable'><tr><th class='tg' onclick='sortCol(true)'>Date</th><th class='tg' onclick='sortCol()' id='bbcone'>BBC One</th><th class='tg' onclick='sortCol()'>BBC Two</th><th class='tg' onclick='sortCol()'>BBC Three</th><th class='tg' onclick='sortCol()'>BBC Four</th><th class='tg' onclick='sortCol()'>BBC News 24</th><th class='tg' onclick='sortCol()'>CBBC</th><th class='tg' onclick='sortCol()'>Cbeebies</th></tr>";
+        var searchBar = "<div class='ctr' id='dataTable'><input id='searchBox' type='text' onkeyup='findText()' placeholder='Search for a month/year...'/>";
+        var dataTable ="<table class='tg' id='mainTable'><tr><th class='tg' onclick='sortCol(true)'>Date</th><th class='tg' onclick='sortCol()' id='bbcone'>BBC One</th><th class='tg' onclick='sortCol()'>BBC Two</th><th class='tg' onclick='sortCol()'>BBC Three</th><th class='tg' onclick='sortCol()'>BBC Four</th><th class='tg' onclick='sortCol()'>BBC News 24</th><th class='tg' onclick='sortCol()'>CBBC</th><th class='tg' onclick='sortCol()'>Cbeebies</th></tr>";
         // create the table headers
         dataTable+="<tbody id='dataTab'>";
         for (var i = 0; i < dates.length; i++) {
@@ -25,14 +26,13 @@
             var month = numToMonth(arr[1]);
             var channels = Object.keys(data[dates[i]]);
             var unixTimestamp = new Date(month + year).getTime();
-            dataTable+="<tr><td width='120' value=" + unixTimestamp + " >"+ month + " " + year + "</td>";
+            dataTable+="<tr><td class='dateCel' value=" + unixTimestamp + " >"+ month + " " + year + "</td>";
 
             for (var j = 0; j < channels.length; j++) dataTable+= "<td width='100' align='center'>" + data[dates[i]][getChannelName(j)] + "</td>";
 
             dataTable+="</tr>";
         }
         dataTable+="</tbody></table></div>";
-        var searchBar = "<input id='searchBox' type='text' onkeyup='findText()' placeholder='Search for a month/year...'/>";
         document.body.innerHTML = searchBar + dataTable;
     });
     
@@ -88,6 +88,7 @@
 
         function getTimeValue(row, index) {
             return $(row).children('td').eq(index).attr("value");
+            // value holds the unix time stamp for the date so it can be compared
         }
     }
 
