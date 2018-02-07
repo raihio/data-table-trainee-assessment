@@ -1,4 +1,5 @@
 
+
 .ctr {
     margin: auto;
     width: max-content;
@@ -24,21 +25,16 @@
     overflow: hidden;
     word-break: normal;
 }
-.tg th {
+th {
     font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: bold;
     padding: 5px;
-    border: 1px solid;
     overflow: hidden;
     word-break: normal;
-}
-
-th:hover{
-    background-color: mintcream;
-}
-
-th {
+    color:#D5DDE5;;
+    background: #35333d;
+    vertical-align:middle;
     width: 105px;
     height: 20px;
     cursor: pointer;
@@ -47,6 +43,38 @@ th {
 th .dateCell {
     width: 115px;
     height: 27px;
+}
+
+/*** Table Styles **/
+
+
+tr {
+    color:#666B85;
+    font-size:16px;
+    font-weight:normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+    background:#4E5066;
+    color:#FFFFFF;
+}
+
+tr:nth-child(odd) td {
+    background:#EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+    background:#4E5066;
+}
+
+td {
+    background:#FFFFFF;
+    padding:20px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:18px;
 }
 
 

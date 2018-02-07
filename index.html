@@ -11,7 +11,7 @@
 <body>
 <script src="jquery-2.1.1.js"></script>
 <script>
-    // only prints if data.json is empty
+    // only prints if data.json is empty/not found
     document.body.innerHTML = "<div><p> No data found in data.json </p></div>";
     $.getJSON('data.json', function(data) {
 
@@ -88,7 +88,7 @@
 
         function getTimeValue(row, index) {
             return $(row).children('td').eq(index).attr("value");
-            // value holds the unix time stamp for the date so it can be compared
+            // "value" holds the unix time stamp for the date so it can be compared
         }
     }
 
