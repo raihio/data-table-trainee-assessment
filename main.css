@@ -1,25 +1,31 @@
 body {
-    background: url("images/hero.png") fixed no-repeat;
+    background: url("images/hero.png") fixed;
     background-size: cover;
 }
 
 
 .ctr {
     margin: auto;
-    width: max-content;
-    padding: 100px;
+    /*width: max-content;*/
+    padding: 10px;
 }
 
 #searchBox {
-    width: 50%;
+    background-color: rgba(245, 255, 250, 0.6);
+    border: none;
+    width: 30%;
     margin-bottom: 20px;
 }
 
+#searchBox::placeholder, #searchBox:focus {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 .tg {
-    width: max-content;
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 
 .tg td {
     font-family: Arial, sans-serif;
@@ -57,7 +63,7 @@ tr {
 }
 
 tr:hover td {
-    background: rgba(78, 80, 102, 0.5);
+    background: rgba(78, 80, 102, 0.1);
     color:#FFFFFF;
 }
 
@@ -66,7 +72,7 @@ tr:nth-child(odd) td {
 }
 
 tr:nth-child(odd):hover td {
-    background: rgba(78, 80, 102, 0.5);
+    background: rgba(78, 80, 102, 0.1);
 }
 
 td {
