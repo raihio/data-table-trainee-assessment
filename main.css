@@ -1,5 +1,5 @@
 body {
-    background: url("images/hero.png") fixed;
+    background: url("images/hero.png") fixed no-repeat;
     background-size: cover;
 }
 
@@ -11,21 +11,21 @@ body {
 }
 
 #searchBox {
-    width: 100%;
+    width: 50%;
     margin-bottom: 20px;
 }
 
 .tg {
+    width: max-content;
     border-collapse: collapse;
     border-spacing: 0;
 }
-
 
 .tg td {
     font-family: Arial, sans-serif;
     font-size: 14px;
     padding: 10px 5px;
-    border: 1px solid;
+    border: 1px solid rgba(0, 0, 0, 0.3);
     overflow: hidden;
     word-break: normal;
 }
@@ -37,20 +37,18 @@ th {
     overflow: hidden;
     word-break: normal;
     color: rgb(213, 221, 229);
-    background: rgba(53, 51, 61, 0.8);
+    background: rgba(53, 51, 61, 0.4);
     vertical-align:middle;
     width: 105px;
     height: 20px;
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 th .dateCell {
     width: 115px;
     height: 27px;
 }
-
-/*** Table Styles **/
-
 
 tr {
     color: #21212c;
