@@ -34,6 +34,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.3);
     overflow: hidden;
     word-break: normal;
+    white-space: nowrap;
 }
 th {
     font-family: Arial, sans-serif;
@@ -49,6 +50,7 @@ th {
     height: 20px;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
 }
 
 th .dateCell {
