@@ -12,7 +12,7 @@
 <script src="jquery-2.1.1.js"></script>
 <script>
     // only prints if data.json is empty/not found
-    document.body.innerHTML = "<div><p> No data found in data.json </p></div>";
+    document.body.innerHTML = "<div class='ctr'><p> No data found in data.json </p></div>";
     $.getJSON('data.json', function(data) {
 
         var dates = Object.keys(data);

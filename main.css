@@ -1,9 +1,13 @@
+body {
+    background: url("images/hero.png") fixed;
+    background-size: cover;
+}
 
 
 .ctr {
     margin: auto;
     width: max-content;
-    padding: 100px
+    padding: 100px;
 }
 
 #searchBox {
@@ -32,8 +36,8 @@ th {
     padding: 5px;
     overflow: hidden;
     word-break: normal;
-    color:#D5DDE5;;
-    background: #35333d;
+    color: rgb(213, 221, 229);
+    background: rgba(53, 51, 61, 0.8);
     vertical-align:middle;
     width: 105px;
     height: 20px;
@@ -49,27 +53,26 @@ th .dateCell {
 
 
 tr {
-    color:#666B85;
+    color: #21212c;
     font-size:16px;
-    font-weight:normal;
-    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+    font-weight: bold;
 }
 
 tr:hover td {
-    background:#4E5066;
+    background: rgba(78, 80, 102, 0.5);
     color:#FFFFFF;
 }
 
 tr:nth-child(odd) td {
-    background:#EBEBEB;
+    background: rgba(235, 235, 235, 0.3);
 }
 
 tr:nth-child(odd):hover td {
-    background:#4E5066;
+    background: rgba(78, 80, 102, 0.5);
 }
 
 td {
-    background:#FFFFFF;
+    background: rgba(255, 255, 255, 0.3);
     padding:20px;
     text-align:left;
     vertical-align:middle;
